@@ -1,0 +1,15 @@
+[build]
+  base = "tracker_os"
+  publish = "build/web"
+  command = """
+    if [ -d "flutter" ]; then cd flutter && git pull && cd .. ; else git clone https://github.com/flutter/flutter.git; fi && 
+    export PATH="$PATH:$(pwd)/flutter/bin" && 
+    flutter channel stable && 
+    flutter upgrade && 
+    flutter build web
+  """
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
