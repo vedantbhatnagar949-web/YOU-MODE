@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TRACKER.OS - INVENTORY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@800;900&amp;family=Space+Mono:wght@400;700&amp;family=Archivo+Narrow:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        .active-tab {
+            background-color: #00ff9f; /* primary-container */
+            color: #002110; /* on-primary-fixed */
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+            transform: translate(4px, 4px);
+        }
+        .neo-shadow {
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-sm {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .glitch-corner {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #55ffa9;
+            border: 2px solid #000;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-dim": "#131313",
+                "on-secondary-fixed-variant": "#74009f",
+                "on-primary-container": "#007144",
+                "on-tertiary-fixed-variant": "#004e5a",
+                "on-tertiary-fixed": "#001f25",
+                "surface-container": "#201f1f",
+                "secondary-fixed-dim": "#ecb2ff",
+                "surface": "#131313",
+                "tertiary": "#f7fdff",
+                "secondary-fixed": "#f8d8ff",
+                "on-background": "#e5e2e1",
+                "error": "#ffb4ab",
+                "surface-container-high": "#2a2a2a",
+                "tertiary-container": "#99ecff",
+                "primary-fixed-dim": "#00e38d",
+                "on-secondary": "#520071",
+                "primary-fixed": "#55ffa9",
+                "tertiary-fixed": "#a5eeff",
+                "on-tertiary": "#00363f",
+                "on-secondary-fixed": "#320047",
+                "outline": "#849587",
+                "on-surface-variant": "#b9cbbc",
+                "on-error": "#690005",
+                "error-container": "#93000a",
+                "outline-variant": "#3a4a3f",
+                "inverse-surface": "#e5e2e1",
+                "secondary-container": "#cf5cff",
+                "surface-bright": "#3a3939",
+                "on-primary-fixed": "#002110",
+                "on-primary-fixed-variant": "#005230",
+                "on-primary": "#00391f",
+                "surface-container-low": "#1c1b1b",
+                "inverse-primary": "#006d41",
+                "surface-tint": "#00e38d",
+                "on-secondary-container": "#480063",
+                "inverse-on-surface": "#313030",
+                "on-tertiary-container": "#006c7c",
+                "secondary": "#ecb2ff",
+                "surface-container-lowest": "#0e0e0e",
+                "on-surface": "#e5e2e1",
+                "primary": "#f4fff4",
+                "on-error-container": "#ffdad6",
+                "background": "#131313",
+                "surface-container-highest": "#353534",
+                "primary-container": "#00ff9f",
+                "tertiary-fixed-dim": "#00daf8",
+                "surface-variant": "#353534"
+            },
+            "fontFamily": {
+                "display-lg-mobile": ["Anybody"],
+                "headline-md": ["Anybody"],
+                "label-md": ["Space Mono"],
+                "headline-lg": ["Anybody"],
+                "label-sm": ["Space Mono"],
+                "body-md": ["Archivo Narrow"],
+                "display-lg": ["Anybody"],
+                "body-lg": ["Archivo Narrow"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- Hero Identity Section (No TopAppBar as per prompt, but brand anchor is important) -->
+<section class="px-sm pt-lg pb-md">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-sm text-primary-fixed uppercase tracking-widest mb-1">Player Status: Active</p>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary-fixed-dim uppercase leading-none">Inventory</h1>
+</div>
+<div class="bg-secondary-container border-[3px] border-black neo-shadow p-2 h-12 w-12 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">backpack</span>
+</div>
+</div>
+<!-- Glitch Alert / Notification -->
+<div class="mt-md bg-on-secondary-fixed-variant border-[3px] border-black p-sm neo-shadow-sm glitch-corner relative overflow-hidden">
+
+<div class="relative z-10 flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed">warning</span>
+<p class="font-label-md text-primary-fixed text-sm">SYSTEM: 3 items require repair to maintain maximum efficiency.</p>
+</div>
+</div>
+</section>
+<!-- Sub-navigation (Tabbed) -->
+<nav class="px-sm mb-md sticky top-0 bg-background/80 backdrop-blur-sm z-30 py-2">
+<div class="flex gap-xs overflow-x-auto no-scrollbar pb-2">
+<button class="active-tab border-[3px] border-black px-sm py-xs font-label-md whitespace-nowrap uppercase transition-all">WEAPONS</button>
+<button class="bg-surface-container-high border-[3px] border-black px-sm py-xs font-label-md whitespace-nowrap uppercase text-on-surface-variant hover:bg-secondary-container hover:text-black transition-none">ABILITIES</button>
+<button class="bg-surface-container-high border-[3px] border-black px-sm py-xs font-label-md whitespace-nowrap uppercase text-on-surface-variant hover:bg-secondary-container hover:text-black transition-none">ARMOR</button>
+<button class="bg-surface-container-high border-[3px] border-black px-sm py-xs font-label-md whitespace-nowrap uppercase text-on-surface-variant hover:bg-secondary-container hover:text-black transition-none">UTILS</button>
+<button class="bg-surface-container-high border-[3px] border-black px-sm py-xs font-label-md whitespace-nowrap uppercase text-on-surface-variant hover:bg-secondary-container hover:text-black transition-none">OTHER</button>
+</div>
+</nav>
+<!-- Inventory Grid -->
+<main class="px-sm">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Item Slot 1: Steel Dagger -->
+<div class="group relative bg-surface-container-low border-[3px] border-black neo-shadow-sm p-base flex flex-col items-center justify-center aspect-square cursor-pointer active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-none">
+<div class="w-full h-full bg-surface-container-highest border-[1px] border-outline-variant flex items-center justify-center relative overflow-hidden">
+<img class="w-16 h-16 object-contain z-10" data-alt="A stylized Neo-Brutalist digital art piece of a sharpened Steel Dagger with a leather-wrapped hilt, glowing with a faint purple aura against a dark, tech-inspired background with thick black strokes and vibrant neon green accents. The lighting is high-contrast, casting sharp shadows in a gamified RPG aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACC1v0f6GXDYFYt9btmaUIP2GWTtlsOL8ZpDku_ojgQPBQIMsF1T_h2VA3ChffKRmxyrJAmdKAIvfnxhOVb6nMuNMSC7JldmAVIyxpGsHVV96XZp_jgwMdHQbYQwAaMhsO5uF_2-sX3Zc4bJQbSXuSSJW3TnFS4kVVLQ5tj7cTJAC2k4PEJuK6jGlUt4GYb3CMA0IiIwtJXVG0Hrn2yCogdMbVSmGfdKpbt3q_fNQRJ_HmOgaBYvBg_6aTNf5EfjCW5s5js0_xWOQ"/>
+<div class="absolute bottom-0 right-0 bg-black text-primary-fixed font-label-sm px-1 text-[10px]">LVL 12</div>
+</div>
+<div class="w-full mt-2 text-center">
+<p class="font-label-md text-[10px] text-on-background uppercase truncate">Steel Dagger</p>
+</div>
+<!-- Rare Glow Effect -->
+<div class="absolute inset-0 border-2 border-primary-fixed/30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+</div>
+<!-- Item Slot 2: Mana Potion -->
+<div class="group relative bg-surface-container-low border-[3px] border-black neo-shadow-sm p-base flex flex-col items-center justify-center aspect-square cursor-pointer active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-none">
+<div class="w-full h-full bg-surface-container-highest border-[1px] border-outline-variant flex items-center justify-center relative overflow-hidden">
+<img class="w-16 h-16 object-contain z-10" data-alt="A vibrant digital illustration of a glass Mana Potion bottle filled with glowing neon purple liquid. The style is aggressive Neo-Brutalism with thick black outlines, bold geometric shapes, and a dark background with electric green sparks. The scene is lit with a magical, high-energy radiance typical of a dark fantasy RPG interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzXAVCojjIKG2lhvRmLLM8lMWRXkQNvdmguHDYrlJ7-zSoywR92JlrfWkynIEIa0tG2eT6fGIJ9_Bpdw1hu2zBSd68cEIF1LVbzUN-c2fhKTII_gcm1q0M5WqitN_XO9UsL01jrJnbRhKRUpgYu61D2SMtRu3yFMxFnlRDAeCIJqTHQ1VBKlRXnypvtS2Vl3eh05dO1b-cFxFblWXFk-tuD83ZpOZ2cSmOW06o3C-HX7qaE1J9H_JMYv1Rw9HmwToQAYv4gZaN7OM"/>
+<div class="absolute top-0 left-0 bg-secondary-container text-black font-label-sm px-1 text-[10px]">x5</div>
+</div>
+<div class="w-full mt-2 text-center">
+<p class="font-label-md text-[10px] text-on-background uppercase truncate">Mana Potion</p>
+</div>
+</div>
+<!-- Item Slot 3: Shadow Cloak -->
+<div class="group relative bg-surface-container-low border-[3px] border-black neo-shadow-sm p-base flex flex-col items-center justify-center aspect-square cursor-pointer active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-none">
+<div class="w-full h-full bg-surface-container-highest border-[1px] border-outline-variant flex items-center justify-center relative overflow-hidden">
+<img class="w-16 h-16 object-contain z-10" data-alt="A dark, ethereal Shadow Cloak depicted in a high-contrast digital art style. The cloak is tattered and seems to dissolve into black smoke and purple mist. The aesthetic follows Neo-Brutalist design principles with sharp edges and thick black strokes, set against a deep obsidian background with neon green geometric highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEkz2lTTpYI5u3uOAoOcNLelujXkC_hJRLbEOXqXc-TudIk7-Gln2ktcbzbSMoWIuaMHAaHjRP2G87U8qN3vsiWpHv1hRP4m3W7rhfxmilOOoM4eTFqjk4WGFseLOdvOcBJgNwTahn7PUsY1pbRvnPXcunD_LYgQkAOUlCJJsWYo_WugNAiJFt-pR_MQhEYY5FMjkbGF43QaBjAxXtiLX5EX2GxgK6CxI3NQAHJF77yfVtGkozsdQAMY5QXUAO3M9wx7FpcNWDMc0"/>
+<div class="absolute bottom-0 right-0 bg-on-secondary-fixed-variant text-white font-label-sm px-1 text-[10px]">RARE</div>
+</div>
+<div class="w-full mt-2 text-center">
+<p class="font-label-md text-[10px] text-on-background uppercase truncate">Shadow Cloak</p>
+</div>
+</div>
+<!-- Item Slot 4: Empty -->
+<div class="bg-surface-container-lowest border-[3px] border-black border-dashed opacity-50 flex items-center justify-center aspect-square">
+<span class="material-symbols-outlined text-outline text-3xl">add</span>
+</div>
+<!-- Item Slot 5: Necromancer Gauntlets -->
+<div class="group relative bg-surface-container-low border-[3px] border-black neo-shadow-sm p-base flex flex-col items-center justify-center aspect-square cursor-pointer active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-none">
+<div class="w-full h-full bg-surface-container-highest border-[1px] border-outline-variant flex items-center justify-center relative overflow-hidden">
+<img class="w-16 h-16 object-contain z-10" data-alt="Intricate Necromancer Gauntlets made of dark bone and dark metal, glowing with sickly neon green energy from the joints. The design is raw and technical, utilizing a Solo Leveling inspired aesthetic with bold lines and a palette of deep black, purple, and electric green. High-contrast lighting emphasizes the brutal, armored texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD_IeIHIwZtKKxneoNhOiqaPCLE5bhG4Fqzbqzd8ugxmR3zh_wHhVzdd4zevY5fQR1J-twrrw3A6SC-mphaZSxNGdo4PyfQAgFleSoh6-DTxs538CoV6c4VocGmOhZchNvr_2nXc2NSXlTggWB-wkJbjk2Kp6EmpKgoDRbO92kRth28u5Gq0tjv3ouRinicraw4kGtjvPnbFO6ej3ws5wPS3EZsrzvFf0Eic3DIxZ5MveKJq60D_V-fN7zCiLbxWRqNfpPyn-SqjI"/>
+</div>
+<div class="w-full mt-2 text-center">
+<p class="font-label-md text-[10px] text-on-background uppercase truncate">Necro-Grips</p>
+</div>
+</div>
+<!-- Item Slot 6: Health Crystal -->
+<div class="group relative bg-surface-container-low border-[3px] border-black neo-shadow-sm p-base flex flex-col items-center justify-center aspect-square cursor-pointer active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-none">
+<div class="w-full h-full bg-surface-container-highest border-[1px] border-outline-variant flex items-center justify-center relative overflow-hidden">
+<img class="w-16 h-16 object-contain z-10" data-alt="A crystalline Health Crystal shard in a vivid magenta and ruby red, encased in a black geometric frame. The art is sharp and stylized for a mobile RPG UI, featuring heavy black borders, no gradients, and a high-contrast 'Electric Grit' atmosphere with purple and green accent lights in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDjrDZCzPYJXf75ePm4__8KjKjJjYlYcnRwg8aK5A6ZwQoDMQ7DokkWPUbnKJYdGrCsJreiXfJ-Ua-x519cUjFPJar98UoeC7LUWWgjwBvSJPJavczRQIZWkCnN6ELXycsVMC3rb-gxmfkozI3DrJWkE7MKEthfP6vJ6HbZj73NzSz3KCxxX--QDDyoa3Glabxj6k7FO-F1QM-Zyi7Wv9IPPl3pb4di9Ue_jLb0eItcg2SWAmfoJ5otDT2rl4hmlcdxKNPqF_mhpU"/>
+</div>
+<div class="w-full mt-2 text-center">
+<p class="font-label-md text-[10px] text-on-background uppercase truncate">Health Crystal</p>
+</div>
+</div>
+<!-- Repeat Slots for Grid density -->
+<div class="bg-surface-container-lowest border-[3px] border-black border-dashed opacity-50 flex items-center justify-center aspect-square">
+<span class="material-symbols-outlined text-outline text-3xl">lock</span>
+</div>
+<div class="bg-surface-container-lowest border-[3px] border-black border-dashed opacity-50 flex items-center justify-center aspect-square">
+<span class="material-symbols-outlined text-outline text-3xl">lock</span>
+</div>
+</div>
+<!-- Detail Preview Card (Contextual Bento Item) -->
+<div class="mt-lg bg-surface-container border-[3px] border-black neo-shadow p-sm grid grid-cols-3 gap-sm items-center">
+<div class="col-span-1 bg-black border-[2px] border-primary-fixed h-24 flex items-center justify-center relative overflow-hidden">
+
+<img class="w-14 h-14 object-contain relative z-10" data-alt="A detailed digital close-up of a legendary 'Demon King Sword' with a jagged, obsidian blade that radiates intense purple flames. The style is Neo-Brutalist with aggressive sharp angles, thick black strokes, and a high-contrast dark palette. The sword looks heavy and powerful, set against a neon-infused dark grid." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJQw1wIuuprxfCdlHnsw-igLU6yfhReFXKXagVDQi5WGnIGu-6lcGh1K6BovzFujfnOIWXsMSMSsgjlPRsi9jPBmv8Wwn7khuTe_zMxp5JBym3lWGyYjk2BlAa6a4cbkhM3cZxN7GIz2-5C-X8pvUeGBBqbEKznird3qRlWAPVL3nIkEGL8dd_c2ErtAXdSS3DgQwja441jxAsbAEfsCWsGccVJr0pWQgX_M-sGPxtNMgoXJQQ9WsGlB-YLbAACAyTLhod0d0_v7I"/>
+</div>
+<div class="col-span-2">
+<h3 class="font-headline-md text-sm text-primary-fixed uppercase tracking-tighter">Demon King Sword</h3>
+<div class="flex gap-2 my-1">
+<span class="bg-secondary-container text-black text-[9px] font-label-md px-1 border-[1px] border-black">S-RANK</span>
+<span class="bg-surface-container-highest text-primary-fixed text-[9px] font-label-md px-1 border-[1px] border-black">EQUIPPED</span>
+</div>
+<p class="text-[10px] font-body-md text-on-surface-variant leading-tight">Increases ATK by 240%. Grants 'Dominator's Touch' passive ability.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Fixed as per JSON Anchor) -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-background px-2 pb-safe py-2 border-t-[4px] border-black">
+<!-- Tasks -->
+<button class="flex flex-col items-center justify-center text-on-background p-2 transition-none active:scale-95">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-md text-[10px] uppercase">Tasks</span>
+</button>
+<!-- Budget -->
+<button class="flex flex-col items-center justify-center text-on-background p-2 transition-none active:scale-95">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-[10px] uppercase">Budget</span>
+</button>
+<!-- Study (Active Mapping: Inventory -> Utility/Systems - Assuming 'System' is active for inventory/status) -->
+<button class="flex flex-col items-center justify-center text-on-background p-2 transition-none active:scale-95">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-md text-[10px] uppercase">Study</span>
+</button>
+<!-- System (Inventory/Settings/Stats) -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container border-[3px] border-black p-2 transition-none active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-md text-[10px] uppercase">System</span>
+</button>
+</footer>
+<!-- Stats Micro-Interaction Script -->
+<script>
+        document.querySelectorAll('.active\\:translate-x-\\[4px\\]').forEach(item => {
+            item.addEventListener('click', () => {
+                // Haptic feedback simulation or simple console log for demo
+                console.log('Item selected: ' + item.querySelector('p').innerText);
+            });
+        });
+    </script>
+</body></html>
